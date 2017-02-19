@@ -16,15 +16,15 @@ def update_boids(boids):
     # Fly towards the middle 
     for i in range(50):
         for j in range(50):
-            xvs[i] += (xs[j] - xs[i]) * 0.01 / len(xs)
+            xvs[i] += (xs[j] - xs[i])*0.01/len(xs)
     for i in range(50):
         for j in range(50):
-            yvs[i] += (ys[j] - ys[i]) * 0.01 / len(xs)
+            yvs[i] += (ys[j] - ys[i])*0.01/len(xs)
 
     # Fly away from nearby boids
     for i in range(50):
         for j in range(50):
-            if (xs[j]-xs[i])**2 + (ys[j]-ys[i])**2 < 100: 
+            if (xs[j]-xs[i])**2 + (ys[j]-ys[i])**2 < 100:
                 xvs[i] = xvs[i]+(xs[i]-xs[j])
                 yvs[i] = yvs[i]+(ys[i]-ys[j])
 
