@@ -8,6 +8,6 @@ separation_limit: 100
 cohesion_limit: 10000
 cohesion_const: 0.125
 horizontal_position_bounds: [-450.0, 300.0]
-vertical_position_bounds: [  50.0, 600.0]
-horizontal_velocity_bounds: [   0.0, -20.0]
-vertical_velocity_bounds: [  10.0,  20.0]
+vertical_position_bounds: [50.0, 600.0]
+horizontal_velocity_bounds: [0.0, -20.0]
+vertical_velocity_bounds: [10.0, 20.0]
