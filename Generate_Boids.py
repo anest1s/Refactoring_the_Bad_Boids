@@ -20,24 +20,22 @@ class Initialize(object):
         self.y_vel_low = (self.configuration['vertical_velocity_bounds'][0])
         self.y_vel_high = (self.configuration['vertical_velocity_bounds'][1])
 
-    def set_initial_positions(self):
+    def initial_position(self):
         self.boids_x_scat = [random.uniform(self.x_coord_low, self.x_coord_high) for bird in range(self.birds_num)]
         self.boids_y_scat = [random.uniform(self.y_coord_low, self.y_coord_high) for bird in range(self.birds_num)]
         return [self.boids_x_scat, self.boids_y_scat]
 
-    def set_initial_velocities(self):
+    def initial_velocity(self):
         self.boids_x_vel_scat = [random.uniform(self.x_vel_low, self.x_vel_high) for bird in range(self.birds_num)]
         self.boids_y_vel_scat = [random.uniform(self.y_vel_low, self.y_vel_high) for bird in range(self.birds_num)]
         return [self.boids_x_vel_scat, self.boids_y_vel_scat]
 
 
+'''
 z = Initialize()
-a = z.set_initial_positions()
-b = z.set_initial_velocities()
+a = z.initial_positions()
+b = z.initial_velocity()
 print(b[0])
 
 print(b[1])
-
-
-
-
+'''
