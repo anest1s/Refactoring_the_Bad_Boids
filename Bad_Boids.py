@@ -37,8 +37,8 @@ def update_boids(boids):
 
     # Move according to velocities
     for i in range(50): 
-        xs[i] = xs[i]+xvs[i]
-        ys[i] = ys[i]+yvs[i]
+        xs[i] += xvs[i]
+        ys[i] += yvs[i]
 
 
 figure = plt.figure()

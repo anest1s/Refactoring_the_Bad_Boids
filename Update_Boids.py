@@ -1,6 +1,8 @@
 from Generate_Boids import Initialize
 import numpy as np
 import itertools
+from matplotlib import pyplot as plt
+from matplotlib import animation
 
 
 class Boids(object):
@@ -22,8 +24,6 @@ class Boids(object):
         self.y = self.initial.initial_position()[1]
         self.y_vel = self.initial.initial_velocity()[1]
 
-        print(self.x_vel)
-
     def align(self):
 
         # Fly towards the middle line
@@ -32,27 +32,56 @@ class Boids(object):
             self.x_vel[bird_i] = self.x_vel[bird_i] + (self.x[bird_j]-self.x[bird_i])*self.alignment_const/self.birds_num
             self.y_vel[bird_i] = self.y_vel[bird_i] + (self.y[bird_j]-self.y[bird_i])*self.alignment_const/self.birds_num
 
-        print(self.x_vel)
-
     def separate(self):
 
         # Fly away from nearby boids
 
-        print(self.x_vel)
-
         for [bird_i, bird_j] in itertools.product(range(self.birds_num), repeat=2):
-            self.boid_a = np.array([self.x[bird_i], self.y[bird_i]])
-            self.boid_b = np.array([self.x[bird_j], self.y[bird_j]])
-            self.distance = (np.linalg.norm(self.boid_a - self.boid_b))**2
+            self.distance = (self.x[bird_i]-self.x[bird_j])**2 + (self.y[bird_i]-self.y[bird_j])**2
             if self.distance < self.separation_limit:
                 self.x_vel[bird_i] = self.x_vel[bird_i] + (self.x[bird_i] - self.x[bird_j])
                 self.y_vel[bird_i] = self.y_vel[bird_i] + (self.y[bird_i] - self.y[bird_j])
 
-        print(self.x_vel)
+    def cohere(self):
+
+        # Try to match speed with nearby birds
+
+        for [bird_i, bird_j] in itertools.product(range(self.birds_num), repeat=2):
+            self.distance = (self.x[bird_i]-self.x[bird_j])**2 + (self.y[bird_i]-self.y[bird_j])**2
+            if self.distance < self.cohesion_limit:
+                self.x_vel[bird_i] = self.x_vel[bird_i] + (self.x_vel[bird_j]-self.x_vel[bird_i])*self.cohesion_const/self.birds_num
+                self.y_vel[bird_i] = self.y_vel[bird_i] + (self.y_vel[bird_j]-self.y_vel[bird_i])*self.cohesion_const/self.birds_num
+
+    def new_positions(self):
+
+        # Move according to velocities
+
+        for bird in range(self.birds_num):
+            self.x[bird] = self.x[bird] + self.x_vel[bird]
+            self.y[bird] = self.y[bird] + self.y_vel[bird]
+
+    def update(self):
+
+        # Update Boids method
+
+        self.align()
+        self.separate()
+        self.cohere()
+        self.new_positions()
 
 
 z = Boids()
-z.separate()
+
+figure = plt.figure()
+axes = plt.axes(xlim=(-500, 1500), ylim=(-500, 1500))
+scatter = axes.scatter(z.x, z.y)
 
 
+def animate(frame):
+    z.update()
+    scatter.set_offsets(list(zip(z.x, z.y)))
 
+anim = animation.FuncAnimation(figure, animate, frames=50, interval=50)
+
+if __name__ == "__main__":
+    plt.show()

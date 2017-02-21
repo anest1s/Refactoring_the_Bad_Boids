@@ -33,7 +33,7 @@ class Initialize(object):
 
 '''
 z = Initialize()
-a = z.initial_positions()
+a = z.initial_position()
 b = z.initial_velocity()
 print(b[0])
 
