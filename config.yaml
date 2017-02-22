@@ -1,12 +1,16 @@
 
 # Code constants configuration file
 
-
 birds_number: 50
+
+# motion constants
 alignment_const: 0.01
 separation_limit: 100
 cohesion_limit: 10000
 cohesion_const: 0.125
+
+# initial conditions
+# x, y axes of motion respectively
 position_lower_limits: [-450.0, 300.0]
 position_upper_limits: [50.0, 600.0]
 velocity_lower_limits: [0.0, -20.0]
