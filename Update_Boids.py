@@ -2,6 +2,7 @@ from Generate_Boids import Initialize
 import itertools
 from matplotlib import pyplot as plt
 from matplotlib import animation
+import numpy as np
 
 
 class Boids(object):
@@ -18,10 +19,14 @@ class Boids(object):
         self.cohesion_const = (self.configuration['cohesion_const'])
 
         # Get initial cartesian positions and velocities
+
         self.x = self.initial.initial_position()[0]
         self.x_vel = self.initial.initial_velocity()[0]
         self.y = self.initial.initial_position()[1]
         self.y_vel = self.initial.initial_velocity()[1]
+
+        self.positions = self.initial.initial_position()
+        self.velocities = self.initial.initial_velocity()
 
     def squared_dif(self, bird_i, bird_j):
 
@@ -34,11 +39,11 @@ class Boids(object):
     def align(self):
 
         # Fly towards the middle line
+        self.middle = np.mean(self.positions, 1)
+        self.direction_to_middle = self.positions - self.middle[:, np.newaxis]
+        self.velocities = self.velocities - self.direction_to_middle*self.alignment_const
 
-        for [bird_i, bird_j] in itertools.product(range(self.birds_num), repeat=2):
-            self.x_vel[bird_i] += (self.x[bird_j]-self.x[bird_i])*self.alignment_const/self.birds_num
-            self.y_vel[bird_i] += (self.y[bird_j]-self.y[bird_i])*self.alignment_const/self.birds_num
-
+    '''
     def separate(self):
 
         # Fly away from nearby boids
@@ -55,24 +60,24 @@ class Boids(object):
             if self.squared_dif(bird_i, bird_j) < self.cohesion_limit:
                 self.x_vel[bird_i] += (self.x_vel[bird_j]-self.x_vel[bird_i])*self.cohesion_const/self.birds_num
                 self.y_vel[bird_i] += (self.y_vel[bird_j]-self.y_vel[bird_i])*self.cohesion_const/self.birds_num
+    '''
 
     def positions_velocities(self):
 
         # Move according to velocities
 
-        for bird in range(self.birds_num):
-            self.x[bird] += self.x_vel[bird]
-            self.y[bird] += self.y_vel[bird]
+        self.positions += self.velocities
 
     def update(self):
 
         # Update Boids method
 
         self.align()
+        '''
         self.separate()
         self.cohere()
+        '''
         self.positions_velocities()
-
 
 z = Boids()
 
@@ -83,7 +88,7 @@ scatter = axes.scatter(z.x, z.y)
 
 def animate(frame):
     z.update()
-    scatter.set_offsets(list(zip(z.x, z.y)))
+    scatter.set_offsets(z.positions.transpose())
 
 anim = animation.FuncAnimation(figure, animate, frames=50, interval=50)
 
