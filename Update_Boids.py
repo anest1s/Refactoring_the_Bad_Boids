@@ -48,7 +48,6 @@ class Boids(object):
         self.separations_if_close[1, :, :][far_away] = 0
         self.velocities += np.sum(self.separations_if_close, 1)
 
-    '''
     def cohere(self):
 
         # Try to match speed with nearby birds
@@ -57,8 +56,7 @@ class Boids(object):
         velocities_differences_if_close = np.copy(velocities_differences)
         velocities_differences_if_close[0, :, :][self.sum_squared_dif() > self.cohesion_limit] = 0
         velocities_differences_if_close[1, :, :][self.sum_squared_dif() > self.cohesion_limit] = 0
-        self.velocities -= np.mean(velocities_differences_if_close, 1) * self.cohesion_const
-    '''
+        self.velocities -= np.mean(velocities_differences_if_close, 1)*self.cohesion_const
 
     def positions_velocities(self):
 
@@ -72,9 +70,7 @@ class Boids(object):
 
         self.align()
         self.separate()
-        '''
         self.cohere()
-        '''
         self.positions_velocities()
 
 
