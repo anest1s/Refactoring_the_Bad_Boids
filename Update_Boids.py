@@ -19,25 +19,17 @@ class Boids(object):
 
         # Get initial cartesian positions and velocities
 
-        self.x = self.initial.initial_position()[0]
-        self.x_vel = self.initial.initial_velocity()[0]
-        self.y = self.initial.initial_position()[1]
-        self.y_vel = self.initial.initial_velocity()[1]
-
         self.positions = self.initial.initial_position()
-        self.separations = self.positions[:, np.newaxis, :] - self.positions[:, :, np.newaxis]
-        self.squared_displacements = self.separations * self.separations
         self.velocities = self.initial.initial_velocity()
-        self.a = self.positions.shape
-        self.b = self.separations.shape
 
     def sum_squared_dif(self):
 
         # This function calculates the squared difference distance between birds
         # Returns the squared dif distance
-
-        ssd = np.sum(self.squared_displacements, 0)
-
+        separations = self.positions[:, np.newaxis, :] - self.positions[:, :, np.newaxis]
+        squared_displacements = separations * separations
+        self.separations_if_close = np.copy(separations)
+        ssd = np.sum(squared_displacements, 0)
         return ssd
 
     def align(self):
@@ -51,21 +43,21 @@ class Boids(object):
 
         # Fly away from nearby boids
 
-        separations_if_close = np.copy(self.separations)
-        separations_if_close[0, :, :][self.sum_squared_dif() > self.separation_limit] = 0
-        separations_if_close[1, :, :][self.sum_squared_dif() > self.separation_limit] = 0
-        self.velocities += np.sum(separations_if_close, 1)
-        return self.velocities
-
+        far_away = self.sum_squared_dif() > self.separation_limit
+        self.separations_if_close[0, :, :][far_away] = 0
+        self.separations_if_close[1, :, :][far_away] = 0
+        self.velocities += np.sum(self.separations_if_close, 1)
 
     '''
     def cohere(self):
 
         # Try to match speed with nearby birds
-        for [bird_i, bird_j] in itertools.product(range(self.birds_num), repeat=2):
-            if self.squared_dif(bird_i, bird_j) < self.cohesion_limit:
-                self.x_vel[bird_i] += (self.x_vel[bird_j]-self.x_vel[bird_i])*self.cohesion_const/self.birds_num
-                self.y_vel[bird_i] += (self.y_vel[bird_j]-self.y_vel[bird_i])*self.cohesion_const/self.birds_num
+
+        velocities_differences = self.velocities[:, np.newaxis, :] - self.velocities[:, :, np.newaxis]
+        velocities_differences_if_close = np.copy(velocities_differences)
+        velocities_differences_if_close[0, :, :][self.sum_squared_dif() > self.cohesion_limit] = 0
+        velocities_differences_if_close[1, :, :][self.sum_squared_dif() > self.cohesion_limit] = 0
+        self.velocities -= np.mean(velocities_differences_if_close, 1) * self.cohesion_const
     '''
 
     def positions_velocities(self):
@@ -85,14 +77,12 @@ class Boids(object):
         '''
         self.positions_velocities()
 
-z = Boids()
-print(z.a)
-print(z.b)
 
+z = Boids()
 
 figure = plt.figure()
 axes = plt.axes(xlim=(-500, 1500), ylim=(-500, 1500))
-scatter = axes.scatter(z.x, z.y)
+scatter = axes.scatter(z.positions[0], z.positions[1])
 
 
 def animate(frame):
