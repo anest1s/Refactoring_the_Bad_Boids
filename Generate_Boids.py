@@ -4,25 +4,22 @@ import numpy as np
 
 class Initialize(object):
     def __init__(self):
-        self.configuration = yaml.load(open('config.yaml'))
+        self.config = yaml.load(open('config.yaml'))
 
-        self.birds_num = (self.configuration['birds_number'])
-        
-    def calc_initial_conditions(self, lower_limits, upper_limits):
+        self.birds_num = (self.config['birds_number'])
+
+    def initial_conditions(self, lower_limits, upper_limits):
+        lower_limits, upper_limits = [np.array(lower_limits), np.array(upper_limits)]
         width = upper_limits - lower_limits
         condition = lower_limits[:, np.newaxis] + np.random.rand(2, self.birds_num)*width[:, np.newaxis]
         return condition
 
     def initial_position(self):
-        position_lower_limits = np.array(self.configuration['position_lower_limits'])
-        position_upper_limits = np.array(self.configuration['position_upper_limits'])
-        position = self.calc_initial_conditions(position_lower_limits, position_upper_limits)
+        position = self.initial_conditions(self.config['position_lower_limits'], self.config['position_upper_limits'])
         return position
 
     def initial_velocity(self):
-        velocity_lower_limits = np.array(self.configuration['velocity_lower_limits'])
-        velocity_upper_limits = np.array(self.configuration['velocity_upper_limits'])
-        velocity = self.calc_initial_conditions(velocity_lower_limits, velocity_upper_limits)
+        velocity = self.initial_conditions(self.config['velocity_lower_limits'], self.config['velocity_upper_limits'])
         return velocity
 
 '''

@@ -8,7 +8,7 @@ class Boids(object):
     def __init__(self):
 
         self.initial = Initialize()  # Create object from Initialize class
-        self.configuration = self.initial.configuration  # Get configuration data
+        self.configuration = self.initial.config  # Get configuration data
 
         # Get configuration constants
         self.birds_num = self.initial.birds_num

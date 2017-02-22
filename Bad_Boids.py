@@ -20,14 +20,14 @@ def update_boids(boids):
     for i in range(50):
         for j in range(50):
             yvs[i] += (ys[j] - ys[i])*0.01/len(xs)
-    '''
+
     # Fly away from nearby boids
     for i in range(50):
         for j in range(50):
             if (xs[j]-xs[i])**2 + (ys[j]-ys[i])**2 < 100:
                 xvs[i] = xvs[i]+(xs[i]-xs[j])
                 yvs[i] = yvs[i]+(ys[i]-ys[j])
-    '''
+
     # Try to match speed with nearby boids
     for i in range(50):
         for j in range(50):
