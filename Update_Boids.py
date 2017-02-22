@@ -1,5 +1,4 @@
 from Generate_Boids import Initialize
-import itertools
 from matplotlib import pyplot as plt
 from matplotlib import animation
 import numpy as np
@@ -26,33 +25,40 @@ class Boids(object):
         self.y_vel = self.initial.initial_velocity()[1]
 
         self.positions = self.initial.initial_position()
+        self.separations = self.positions[:, np.newaxis, :] - self.positions[:, :, np.newaxis]
+        self.squared_displacements = self.separations * self.separations
         self.velocities = self.initial.initial_velocity()
+        self.a = self.positions.shape
+        self.b = self.separations.shape
 
-    def squared_dif(self, bird_i, bird_j):
+    def sum_squared_dif(self):
 
         # This function calculates the squared difference distance between birds
         # Returns the squared dif distance
 
-        self.distance = (self.x[bird_i]-self.x[bird_j])**2 + (self.y[bird_i]-self.y[bird_j])**2
-        return self.distance
+        ssd = np.sum(self.squared_displacements, 0)
+
+        return ssd
 
     def align(self):
 
         # Fly towards the middle line
-        self.middle = np.mean(self.positions, 1)
-        self.direction_to_middle = self.positions - self.middle[:, np.newaxis]
-        self.velocities = self.velocities - self.direction_to_middle*self.alignment_const
+        middle = np.mean(self.positions, 1)
+        direction_to_middle = self.positions - middle[:, np.newaxis]
+        self.velocities -= direction_to_middle*self.alignment_const
 
-    '''
     def separate(self):
 
         # Fly away from nearby boids
 
-        for [bird_i, bird_j] in itertools.product(range(self.birds_num), repeat=2):
-            if self.squared_dif(bird_i, bird_j) < self.separation_limit:
-                self.x_vel[bird_i] += (self.x[bird_i] - self.x[bird_j])
-                self.y_vel[bird_i] += (self.y[bird_i] - self.y[bird_j])
+        separations_if_close = np.copy(self.separations)
+        separations_if_close[0, :, :][self.sum_squared_dif() > self.separation_limit] = 0
+        separations_if_close[1, :, :][self.sum_squared_dif() > self.separation_limit] = 0
+        self.velocities += np.sum(separations_if_close, 1)
+        return self.velocities
 
+
+    '''
     def cohere(self):
 
         # Try to match speed with nearby birds
@@ -73,13 +79,16 @@ class Boids(object):
         # Update Boids method
 
         self.align()
-        '''
         self.separate()
+        '''
         self.cohere()
         '''
         self.positions_velocities()
 
 z = Boids()
+print(z.a)
+print(z.b)
+
 
 figure = plt.figure()
 axes = plt.axes(xlim=(-500, 1500), ylim=(-500, 1500))

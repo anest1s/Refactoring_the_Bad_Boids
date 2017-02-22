@@ -15,19 +15,20 @@ class Initialize(object):
         self.velocity_upper_limits = np.array(self.configuration['velocity_upper_limits'])
 
     def calc_initial_conditions(self, lower_limits, upper_limits):
-        self.width = upper_limits - lower_limits
-        self.condition = lower_limits[:, np.newaxis] + np.random.rand(2, self.birds_num)*self.width[:, np.newaxis]
-        return self.condition
+        width = upper_limits - lower_limits
+        condition = lower_limits[:, np.newaxis] + np.random.rand(2, self.birds_num)*width[:, np.newaxis]
+        return condition
 
     def initial_position(self):
-        self.position = self.calc_initial_conditions(self.position_lower_limits, self.position_upper_limits)
-        return self.position
+        position = self.calc_initial_conditions(self.position_lower_limits, self.position_upper_limits)
+        return position
 
     def initial_velocity(self):
-        self.velocity = self.calc_initial_conditions(self.velocity_lower_limits, self.velocity_upper_limits)
-        return self.velocity
+        velocity = self.calc_initial_conditions(self.velocity_lower_limits, self.velocity_upper_limits)
+        return velocity
 
-
+'''
 z = Initialize()
 a = z.initial_position()
 print(a)
+'''
