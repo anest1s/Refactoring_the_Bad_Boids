@@ -4,7 +4,6 @@ import numpy as np
 
 class Boids(Initializer):
     def __init__(self):
-        Initializer.__init__(self)
         super(Boids, self).__init__()
 
     def align(self):

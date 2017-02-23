@@ -26,7 +26,6 @@ class Initializer(object):
         :param lower_limits: position or velocity lower limits
         :param upper_limits: position or velocity upper limits
         This function calculates the condition (position or velocity) of the birds based on the input data (config_file)
-        :return:
         '''
 
         lower_limits, upper_limits = [np.array(lower_limits), np.array(upper_limits)]
