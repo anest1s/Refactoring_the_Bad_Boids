@@ -3,8 +3,8 @@ import numpy as np
 
 
 class Boids(Initializer):
-    def __init__(self):
-        super(Boids, self).__init__()
+    def __init__(self, configuration_file):
+        super(Boids, self).__init__(configuration_file)
 
     def align(self):
 

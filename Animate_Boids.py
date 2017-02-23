@@ -5,10 +5,10 @@ from Update_Boids import Boids
 
 
 class Animator(Initializer):
-    def __init__(self):
-        super(Animator, self).__init__()
+    def __init__(self, configuration_file):
+        super(Animator, self).__init__(configuration_file)
 
-        self.boids = Boids()
+        self.boids = Boids(configuration_file)
 
     def animate(self, scatter):
         self.boids.update()
@@ -26,7 +26,7 @@ class Animator(Initializer):
         anim = animation.FuncAnimation(figure, animate, frames=self.config['frames'], interval=self.config['interval'])
         plt.show()
 
-
+'''
 z = Animator()
 z.figure()
-
+'''
