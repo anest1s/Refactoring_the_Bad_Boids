@@ -1,0 +1,12 @@
+setup.py
+Boids.egg-info/PKG-INFO
+Boids.egg-info/SOURCES.txt
+Boids.egg-info/dependency_links.txt
+Boids.egg-info/requires.txt
+Boids.egg-info/top_level.txt
+Good_Boids_module/Animate_Boids.py
+Good_Boids_module/Generate_Boids.py
+Good_Boids_module/Update_Boids.py
+Good_Boids_module/__init__.py
+Good_Boids_module/command.py
+scripts/boids

@@ -1,4 +1,4 @@
-from Generate_Boids import Initializer
+from Good_Boids_module.Generate_Boids import Initializer
 import numpy as np
 
 

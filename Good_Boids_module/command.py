@@ -1,9 +1,8 @@
 import sys
 from argparse import ArgumentParser
-from Animate_Boids import Animator
+from Good_Boids_module.Animate_Boids import Animator
 
 
-# Command line entry point
 def process():
     parser = ArgumentParser(description="Simulation of boids' flocking")
     
@@ -17,7 +16,7 @@ def process():
 
     argument = parser.parse_args()
 
-    # Catch exception if file does not exist
+    # Exceptions if file does not exist
     try:
         animate = Animator(argument.configuration_file)
         animate.figure()
@@ -28,7 +27,6 @@ def process():
     except:
         print("Unexpected error.", sys.exc_info()[0], "\n")
         raise
-
 
 if __name__ == "__main__":
     process()

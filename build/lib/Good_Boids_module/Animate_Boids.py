@@ -1,7 +1,7 @@
 from matplotlib import animation
 from matplotlib import pyplot as plt
-from Generate_Boids import Initializer
-from Update_Boids import Boids
+from Good_Boids_module.Generate_Boids import Initializer
+from Good_Boids_module.Update_Boids import Boids
 
 
 class Animator(Initializer):

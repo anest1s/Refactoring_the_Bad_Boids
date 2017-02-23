@@ -5,6 +5,7 @@ import numpy as np
 class Initializer(object):
     def __init__(self, configuration_file):
         self.config = yaml.load(open(configuration_file))
+        #self.config = yaml.load(open('config.yaml'))
         # simulation constants
         self.birds_num = (self.config['birds_number'])
         self.alignment_const = (self.config['alignment_const'])
