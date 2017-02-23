@@ -2,7 +2,7 @@ import yaml
 import numpy as np
 
 
-class Initialize(object):
+class Initializer(object):
     def __init__(self):
         self.config = yaml.load(open('config.yaml'))
 

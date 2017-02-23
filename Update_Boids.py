@@ -1,12 +1,10 @@
-from Generate_Boids import Initialize
-from matplotlib import pyplot as plt
-from matplotlib import animation
+from Generate_Boids import Initializer
 import numpy as np
 
 
-class Boids(Initialize):
+class Boids(Initializer):
     def __init__(self):
-        Initialize.__init__(self)
+        Initializer.__init__(self)
         super(Boids, self).__init__()
 
     def align(self):
@@ -62,21 +60,3 @@ class Boids(Initialize):
         self.separate()
         self.cohere()
         self.positions_velocities()
-
-
-z = Boids()
-print(z.birds_num)
-
-figure = plt.figure()
-axes = plt.axes(xlim=(-500, 1500), ylim=(-500, 1500))
-scatter = axes.scatter(z.positions[0], z.positions[1])
-
-
-def animate(frame):
-    z.update()
-    scatter.set_offsets(z.positions.transpose())
-
-anim = animation.FuncAnimation(figure, animate, frames=50, interval=50)
-
-if __name__ == "__main__":
-    plt.show()
