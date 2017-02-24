@@ -80,8 +80,8 @@ class Boids(Initializer):
     def update_positions(self):
 
         '''
-        Updates the boids according to all previous behaviors (methods)
-        :return: final positions
+        Updates the boids positions according to all previous behaviors (methods)
+        :return: positions
         '''
 
         self.align()
@@ -91,7 +91,41 @@ class Boids(Initializer):
         return self.positions
 
     def update_velocities(self):
+
+        '''
+        Updates the boids velocities according to all previous behaviors (methods)
+        :return: velocities
+        '''
+
         self.align()
         self.separate()
         self.cohere()
         return self.velocities
+
+    def get_raw_positions(self, positions, velocities):
+
+        '''
+        Calculates positions given raw position date instead of configuration file.
+        Used for testing purpose
+        :return: positions
+        '''
+
+        self.positions = np.asarray(positions)
+        self.velocities = np.asarray(velocities)
+        self.update_positions()
+        return self.positions
+
+    def get_raw_velocities(self, positions, velocities):
+
+        '''
+        Calculates velocities given raw velocities data instead of configuration file.
+        Used for testing purpose
+        :return: velocities
+        '''
+
+        self.positions = np.asarray(positions)
+        self.velocities = np.asarray(velocities)
+        self.update_velocities()
+        return self.velocities
+
+
