@@ -4,15 +4,13 @@ from Good_Boids_module.Generate_Boids import Initializer
 from Good_Boids_module.Update_Boids import Boids
 
 
-class Animator(Initializer):
+class Animator(Initializer, Boids):
     def __init__(self, configuration_file):
         super(Animator, self).__init__(configuration_file)
 
-        self.boids = Boids(configuration_file)
-
     def animate(self, scatter):
-        self.boids.update()
-        scatter.set_offsets(self.boids.positions.transpose())
+        self.update()
+        scatter.set_offsets(self.positions.transpose())
 
     def figure(self):
 
