@@ -7,7 +7,7 @@ def process():
     parser = ArgumentParser(description="Simulation of boids' flocking")
     
     # Parameters
-    parser.add_argument('--file', dest='configuration_file', help="Choose your configuration file")
+    parser.add_argument('--file', dest='configuration_file',  help="Choose your configuration file")
 
     # Print help message even if no flag is provided
     if len(sys.argv) == 1:

@@ -4,6 +4,7 @@ setup(
     name="Boids",
     version="1.0",
     description="Birds flocking simulation",
+    license="MIT License",
     author="Anestis Mamplekos-Alexiou",
     author_email="anestis.mamplekos-alexiou.16@ucl.ac.uk",
     date="23.2.2017",
