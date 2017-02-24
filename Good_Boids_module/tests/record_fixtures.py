@@ -10,13 +10,6 @@ before_velocities = get.initial_velocities().tolist()
 after_positions = get.update_positions().tolist()
 after_velocities = get.update_velocities().tolist()
 
-
-print(before_positions)
-print(after_positions)
-print(before_velocities)
-print(after_velocities)
-
-
 fixture = {"before_positions": before_positions, "before_velocities": before_velocities,
            "after_positions": after_positions, "after_velocities": after_velocities}
 fixture_file = open("fixture.yaml", 'w')

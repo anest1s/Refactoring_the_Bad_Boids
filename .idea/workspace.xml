@@ -77,8 +77,8 @@
       <file leaf-file-name="record_fixtures.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Good_Boids_module/tests/record_fixtures.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1438849" vertical-offset="93" max-vertical-offset="510">
-              <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.40767387" vertical-offset="0" max-vertical-offset="417">
+              <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -1056,8 +1056,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Good_Boids_module/tests/record_fixtures.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1438849" vertical-offset="93" max-vertical-offset="510">
-          <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.40767387" vertical-offset="0" max-vertical-offset="417">
+          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
