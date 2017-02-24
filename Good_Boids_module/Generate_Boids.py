@@ -1,20 +1,29 @@
+#  ==============================================================================================================
+#  @brief: This script generates the initial conditions (positions/velocities) of a flock
+#  @details: This work has been done for the MPHYG001 module of my MRes studies
+#  @author: Anestis Mamplekos-Alexiou (anestis.mamplekos-alexiou.16@ucl.ac.uk)
+#  @date: 24/2/2017
+
 import yaml
 import numpy as np
 
 
 class Initializer(object):
     def __init__(self, configuration_file):
-        self.config = yaml.load(open(configuration_file))
-        #self.config = yaml.load(open('config.yaml'))
 
-        # simulation constants
+        '''
+        :param configuration_file: includes all necessary constants for the simulation
+        :return: initial positions and velocities for each bird of the flock
+        '''
+
+        self.config = yaml.load(open(configuration_file))
+
         self.birds_num = (self.config['birds_number'])
         self.alignment_const = (self.config['alignment_const'])
         self.separation_limit = (self.config['separation_limit'])
         self.cohesion_limit = (self.config['cohesion_limit'])
         self.cohesion_const = (self.config['cohesion_const'])
 
-        # random initial positions and velocities
         self.positions = self.initial_conditions(self.config['position_lower_limits'],
                                                  self.config['position_upper_limits'])
 
