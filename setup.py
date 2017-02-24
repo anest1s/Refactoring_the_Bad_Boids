@@ -11,5 +11,6 @@ setup(
     url="https://github.com/anest1s/Refactoring_the_Bad_Boids",
     packages=find_packages(exclude=['*test']),
     scripts=['scripts/boids'],
-    install_requires=['argparse', 'numpy', 'matplotlib']
+    install_requires=['argparse', 'numpy', 'matplotlib', 'nose', 'cython', 'pyyaml']
+
 )
