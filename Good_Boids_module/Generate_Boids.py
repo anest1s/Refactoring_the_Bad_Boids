@@ -42,3 +42,9 @@ class Initializer(object):
         width = upper_limits - lower_limits
         condition = lower_limits[:, np.newaxis] + np.random.rand(2, self.birds_num)*width[:, np.newaxis]
         return condition
+
+    def initial_positions(self):
+        return self.positions
+
+    def initial_velocities(self):
+        return self.velocities

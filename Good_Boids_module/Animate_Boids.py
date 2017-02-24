@@ -14,7 +14,7 @@ class Animator(Boids):
         super(Animator, self).__init__(configuration_file)
 
     def animate(self, scatter):
-        self.update()
+        self.update_positions()
         scatter.set_offsets(self.positions.transpose())
 
     def figure(self):

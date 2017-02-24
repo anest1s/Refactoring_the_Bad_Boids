@@ -77,7 +77,7 @@ class Boids(Initializer):
 
         self.positions += self.velocities
 
-    def update(self):
+    def update_positions(self):
 
         '''
         Updates the boids according to all previous behaviors (methods)
@@ -88,3 +88,10 @@ class Boids(Initializer):
         self.separate()
         self.cohere()
         self.positions_velocities()
+        return self.positions
+
+    def update_velocities(self):
+        self.align()
+        self.separate()
+        self.cohere()
+        return self.velocities
