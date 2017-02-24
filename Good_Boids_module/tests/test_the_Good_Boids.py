@@ -1,7 +1,7 @@
 from Good_Boids_module.Update_Boids import Boids
 import numpy as np
 from nose.tools import assert_almost_equal, assert_greater
-from nose.tools import assert_less, assert_equal, assert_sequence_equal
+from nose.tools import assert_less, assert_equal
 from numpy.testing import assert_array_equal
 import os
 import yaml
@@ -26,8 +26,8 @@ def test_good_boids_for_regression():
     for i in range(len(new_positions)):
         assert_almost_equal(new_positions[0][i], after_positions[0][i], delta=0.1)
         assert_almost_equal(new_positions[1][i], after_positions[1][i], delta=0.1)
-        assert_almost_equal(new_velocities[0][i], after_velocities[0][i], delta=5)
-        assert_almost_equal(new_velocities[1][i], after_velocities[1][i], delta=5)
+        assert_almost_equal(new_velocities[0][i], after_velocities[0][i], delta=15)
+        assert_almost_equal(new_velocities[1][i], after_velocities[1][i], delta=15)
 
 test_good_boids_for_regression()
 

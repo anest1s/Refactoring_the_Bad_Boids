@@ -106,7 +106,7 @@ class Boids(Initializer):
 
         '''
         Calculates positions given raw position date instead of configuration file.
-        Used for testing purpose
+        Used for testing purposes
         :return: positions
         '''
 
@@ -119,7 +119,7 @@ class Boids(Initializer):
 
         '''
         Calculates velocities given raw velocities data instead of configuration file.
-        Used for testing purpose
+        Used for testing purposes
         :return: velocities
         '''
 
@@ -127,5 +127,4 @@ class Boids(Initializer):
         self.velocities = np.asarray(velocities)
         self.update_velocities()
         return self.velocities
-
 
