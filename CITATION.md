@@ -4,4 +4,4 @@ If you wish to refer to this work, please cite the following:
 
 2) Hetherington, J., "An Introduction to Python Programming for Research".
 
-3) http://www.ucl.ac.uk/isd/services/research-it/training.
+3) http://www.ucl.ac.uk/isd/services/research-it/training. 

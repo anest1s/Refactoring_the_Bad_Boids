@@ -12,5 +12,4 @@ setup(
     packages=find_packages(exclude=['*test']),
     scripts=['scripts/boids'],
     install_requires=['argparse', 'numpy', 'matplotlib', 'nose', 'cython', 'pyyaml']
-
 )

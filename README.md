@@ -3,6 +3,14 @@ The Boids
 This project simulates the bird-oids (Boids) Flocking.
 The updated code is the outcome of refactoring the bad boids implementation.
 
+**Start with Installation!!!:**
+```
+cmd: Refactoring_the_Bad_Boids> python setup.py install
+
+sudo pip install git+https://github.com/anest1s/Refactoring_the_Bad_Boids
+
+```
+
 **Usage:**
 ```
 usage: command_line.py [-h] [--file CONFIGURATION_FILE]
@@ -13,14 +21,6 @@ optional arguments:
     -h, --help            show this help message and exit
     --file CONFIGURATION_FILE
                           Choose your configuration file
-```
-
-**Installation:**
-```
-cmd: Refactoring_the_Bad_Boids> python setup.py install
-
-sudo pip install git+https://github.com/anest1s/Refactoring_the_Bad_Boids
-
 ```
 
 **Command line entry:**
